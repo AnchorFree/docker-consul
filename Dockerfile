@@ -5,7 +5,7 @@ COPY start.sh /start.sh
 COPY .s3cfg /root/.s3cfg
 
 RUN chmod +x /start.sh
-RUN apk add --no-cache ca-certificates gnupg curl jq mc git python py-pip
+RUN apk update && apk upgrade && apk add --no-cache ca-certificates gnupg curl jq mc git python py-pip
 RUN pip install --upgrade pip python-dateutil
 
 RUN chown -R consul:consul /consul

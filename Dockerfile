@@ -3,14 +3,11 @@ MAINTAINER <a.kalvan@anchorfree.com>
 
 COPY start.sh /start.sh
 COPY .s3cfg /root/.s3cfg
+RUN chmod +x /start.sh && chown -R consul:consul /consul
 
-RUN chmod +x /start.sh
-RUN apk update && apk upgrade && apk add --no-cache ca-certificates gnupg curl jq mc git python py-pip
-RUN pip install --upgrade pip python-dateutil
-
-RUN chown -R consul:consul /consul
-RUN git clone https://github.com/s3tools/s3cmd.git /opt/s3cmd
-RUN ln -s /opt/s3cmd /s3cmd
+RUN apk --update --no-cache upgrade && apk add --no-cache ca-certificates curl git python py-pip
+RUN pip install --upgrade --quiet pip python-dateutil python-magic
+RUN git clone https://github.com/s3tools/s3cmd.git /opt/s3cmd && ln -s /opt/s3cmd/s3cmd /bin/s3cmd
 
 VOLUME /consul
 ENTRYPOINT ["/start.sh"]

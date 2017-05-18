@@ -48,7 +48,7 @@ config_exit=$?
 cd /consul/config
 for wan_peer in `ls  | grep ^peers | grep -v $dc`
 do
-	sed -i 's/start_join/start_join_wan/g' $wan_peer
+	sed -i 's/\"start_join\"/\"start_join_wan\"/g' $wan_peer
 done
 
 if [ "$config_exit" -eq "0" ]; then

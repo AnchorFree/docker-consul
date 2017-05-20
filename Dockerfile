@@ -1,4 +1,4 @@
-FROM consul:latest
+FROM consul:0.8.3
 MAINTAINER <a.kalvan@anchorfree.com>
 
 COPY start.sh /start.sh

@@ -1,3 +1,3 @@
-FROM consul:0.9.3
+FROM consul:1.6.1
 
 HEALTHCHECK CMD consul info
